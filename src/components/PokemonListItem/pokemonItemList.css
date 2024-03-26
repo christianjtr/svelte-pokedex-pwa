@@ -1,0 +1,141 @@
+.pokemon-list-item {
+  position: relative;
+  border-radius: 0.9375rem;
+
+  & .box {
+    min-height: 9.375rem;
+  }
+
+  & .media {
+    width: 100%;
+  }
+
+  & .box::after {
+    content: '';
+    background: url('../../assets/pokeball.svg') no-repeat 100% -500%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.05;
+    border-radius: 0.625rem;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+  }
+
+  & span.tag {
+    filter: brightness(130%);
+    -webkit-filter: brightness(130%);
+    border: 0.0063rem solid floralwhite;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+  }
+
+  & .title-container {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+  }
+
+  & .pokemon-info {
+    gap: 0.625rem;
+    color: white;
+    font-weight: 600;
+  }
+
+  & .default {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  & .grass {
+    background-color: #49d0b0;
+  }
+
+  & .bug {
+    background-color: #8ad049;
+  }
+
+  & .normal {
+    background-color: #be69c7;
+  }
+
+  & .fairy {
+    background-color: #db749f;
+  }
+
+  & .fire {
+    background-color: #f05267;
+  }
+
+  & .water {
+    background-color: #44bce0;
+  }
+
+  & .electric {
+    background-color: rgb(223, 235, 67);
+  }
+
+  & .poison {
+    background-color: rgb(130, 175, 189);
+  }
+
+  & .ground {
+    background-color: rgb(136, 130, 94);
+  }
+
+  & .fighting {
+    background-color: rgb(218, 153, 70);
+  }
+
+  & .psychic {
+    background-color: rgb(112, 62, 62);
+  }
+
+  & .rock {
+    background-color: rgb(161, 161, 161);
+  }
+
+  & .ghost {
+    background-color: rgb(71, 134, 120);
+  }
+
+  & .ice {
+    background-color: rgb(187, 243, 231);
+  }
+
+  & .dragon {
+    background-color: rgb(236, 133, 48);
+  }
+}
+
+#player-container .play-pause-button {
+  cursor: pointer;
+  text-indent: -62499.9375rem;
+  height: 0.3125rem;
+  width: 0.3125rem;
+  padding: 0.9375rem;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+);
+  background-repeat: no-repeat !important;
+  background-position: center;
+  background-size: 0.5rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 0.75rem;
+  background-color: gainsboro;
+  border-radius: 1.25rem;
+  box-shadow: 0 0 0.3125rem 0.125rem rgba(0, 0, 0, 0.2);
+}
+
+#player-container .play-pause-button:hover {
+  box-shadow: 0 0 0.625rem 0.125rem rgba(0, 0, 0, 0.5);
+}
+
+.play {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+);
+}
+.pause {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTAgMjRoLTZ2LTI0aDZ2MjR6bTEwLTI0aC02djI0aDZ2LTI0eiIvPjwvc3ZnPg==) !important;
+}

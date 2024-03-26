@@ -1,0 +1,117 @@
+:root {
+  --background-color: #f52e37;
+  --shadow-red-color: #f52e37;
+  --max-width: 50ch;
+  --border-radius: 1.875rem;
+}
+
+html,
+body {
+  margin: 0px;
+  user-select: none;
+  background: var(--background-color);
+}
+
+img,
+.no-drag {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.pokedex {
+  background-color: transparent;
+  margin: 1.25rem;
+  border-radius: var(--border-radius);
+  box-shadow: 1px 0px 10px 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 1px 0px 10px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 0px 10px 5px rgba(0, 0, 0, 0.2);
+  max-width: 120ch;
+  flex: 1;
+}
+
+.pokedex__container {
+  border-radius: 0px 0px 1.875rem 1.875rem;
+  background: floralwhite;
+  align-items: initial !important;
+}
+
+.button-glass-container {
+  width: 250px;
+  height: 100px;
+  position: relative;
+  top: 10px;
+  background-color: var(--background-color);
+  padding: 15px;
+
+  border-bottom-right-radius: 85px 60px;
+  -webkit-border-bottom-right-radius: 85px 60px;
+  -moz-border-bottom-right-radius: 85px 60px;
+  -o-border-bottom-right-radius: 85px 60px;
+
+  border-top-left-radius: 30px;
+  -webkit-border-top-left-radius: 30px;
+  -moz-border-top-left-radius: 30px;
+  -o-border-top-left-radius: 30px;
+}
+
+.bg-upper-glass-container {
+  --bg-color: floralwhite;
+
+  width: 100%;
+  height: 80px;
+  background-color: var(--bg-color);
+  border-radius: 0px 30px 0px 30px;
+
+  border-top-left-radius: 30px;
+  -webkit-border-top-left-radius: 30px;
+  -moz-border-top-left-radius: 30px;
+  -o-border-top-left-radius: 30px;
+}
+
+.glass-button {
+  width: 60px;
+  height: 60px;
+  border: 5px solid #fff;
+
+  box-shadow: 0 0 10px #490000;
+  -webkit-box-shadow: 0 0 10px #490000;
+  -moz-box-shadow: 0 0 10px #490000;
+  -o-box-shadow: 0 0 10px #490000;
+
+  background: radial-gradient(#05fbfb, #29abe3);
+  background: -webkit-radial-gradient(#05fbfb, #29abe3);
+  background: -moz-radial-gradient(#05fbfb, #29abe3);
+  background: -o-radial-gradient(#05fbfb, #29abe3);
+
+  border-radius: 35px;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  -o-border-radius: 35px;
+
+  /* animation: blinking 1s infinite; */
+}
+
+@keyframes blinking {
+  from {
+    background: radial-gradient(#05fbfb, #29abe3);
+    background: -webkit-radial-gradient(#05fbfb, #29abe3);
+    background: -moz-radial-gradient(#05fbfb, #29abe3);
+    background: -o-radial-gradient(#05fbfb, #29abe3);
+  }
+  50% {
+    background: radial-gradient(#05fbfb, #07597c);
+    background: -webkit-radial-gradient(#05fbfb, #07597c);
+    background: -moz-radial-gradient(#05fbfb, #07597c);
+    background: -o-radial-gradient(#05fbfb, #07597c);
+  }
+  to {
+    background: radial-gradient(#05fbfb, #29abe3);
+    background: -webkit-radial-gradient(#05fbfb, #29abe3);
+    background: -moz-radial-gradient(#05fbfb, #29abe3);
+    background: -o-radial-gradient(#05fbfb, #29abe3);
+  }
+}
