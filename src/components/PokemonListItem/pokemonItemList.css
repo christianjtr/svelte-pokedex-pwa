@@ -1,4 +1,5 @@
 .pokemon-list-item {
+  cursor: pointer;
   position: relative;
   border-radius: 0.9375rem;
 
@@ -109,33 +110,4 @@
   & .dragon {
     background-color: rgb(236, 133, 48);
   }
-}
-
-#player-container .play-pause-button {
-  cursor: pointer;
-  text-indent: -62499.9375rem;
-  height: 0.3125rem;
-  width: 0.3125rem;
-  padding: 0.9375rem;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+);
-  background-repeat: no-repeat !important;
-  background-position: center;
-  background-size: 0.5rem;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 0.75rem;
-  background-color: gainsboro;
-  border-radius: 1.25rem;
-  box-shadow: 0 0 0.3125rem 0.125rem rgba(0, 0, 0, 0.2);
-}
-
-#player-container .play-pause-button:hover {
-  box-shadow: 0 0 0.625rem 0.125rem rgba(0, 0, 0, 0.5);
-}
-
-.play {
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+);
-}
-.pause {
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTAgMjRoLTZ2LTI0aDZ2MjR6bTEwLTI0aC02djI0aDZ2LTI0eiIvPjwvc3ZnPg==) !important;
 }
