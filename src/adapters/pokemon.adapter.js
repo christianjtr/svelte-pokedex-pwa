@@ -29,10 +29,30 @@ class Pokemon {
             officialArt: this.pokemon.sprites.other["official-artwork"].front_default,
             experience: this.pokemon.base_experience,
             weight: this.pokemon.weight,
-            height: this.pokemon.height
+            height: this.pokemon.height,
+            species: this.pokemon.species,
         }
 
         return pokemon;
+    }
+
+    getAbilities() {
+        const abilities = this.pokemon.abilities.map((item) => item.ability.name);
+        return abilities;
+    }
+    
+    getStats() {
+        const stats = this.pokemon.stats.map((item) => ({
+            value: item.base_stat,
+            key: item.stat.name
+        }));
+
+        return stats;
+    }
+
+    getMoves() {
+        const uniqueMoves = new Set(this.pokemon.moves.map((item) => item.move.name));
+        return Array.from(uniqueMoves);
     }
 }
 
