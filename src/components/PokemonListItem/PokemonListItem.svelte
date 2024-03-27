@@ -1,60 +1,36 @@
 <script>
-  // import { onDestroy, onMount } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   import './pokemonItemList.css';
 
   export let pokemon;
 
-  // let track;
-  // let controlBtn;
+  const dispatch = createEventDispatcher();
+
+  const handleOnClick = () => {
+    dispatch('choose-pokemon', { pokemonName: pokemon.name });
+  };
 
   $: [primaryType] = pokemon.types;
 
   const basicInfo = [
     { title: 'Exp.', value: `${pokemon.experience} pts` },
-    { title: 'Weight', value: `${pokemon.weight / 10} kg` },
+    { title: 'Weight', value: `${pokemon.weight / 10} Kg` },
     { title: 'Height', value: `${pokemon.height * 10} cm` }
   ];
-
-  // const growlAudio = pokemon.cries.latest || pokemon.cries.legacy;
-
-  // function toggleClass(element, classNames) {
-  //   classNames.forEach(className => element.classList.toggle(className));
-  // }
-
-  // function handlePlayPause() {
-  //   if (track.paused) {
-  //     track.play();
-  //     toggleClass(controlBtn, ['pause', 'play']);
-  //   } else {
-  //     track.pause();
-  //     toggleClass(controlBtn, ['pause']);
-  //   }
-  // }
-
-  // function setPlayClassToButton() {
-  //   toggleClass(controlBtn, ['pause', 'play']);
-  // }
-
-  // onMount(() => {
-  //   track = document.getElementById(`track-${pokemon.id}`);
-  //   controlBtn = document.getElementById(`play-pause-${pokemon.id}`);
-
-  //   controlBtn.addEventListener('click', handlePlayPause);
-  //   track.addEventListener('ended', setPlayClassToButton);
-  // });
-
-  // onDestroy(() => {
-  //   controlBtn.removeEventListener('click', handlePlayPause, true);
-  //   track.removeEventListener('ended', setPlayClassToButton, true);
-  // });
 </script>
 
-<div class="pokemon-list-item">
+<div
+  class="pokemon-list-item"
+  tabindex="0"
+  role="button"
+  on:keypress|preventDefault
+  on:click={handleOnClick}
+>
   <div class={`box ${primaryType} is-flex`}>
     <article class="media is-flex is-align-items-center">
       <div class="media-left mr-5">
         <figure class="image is-96x96">
-          <img src={pokemon.image} alt="Pokemon logo" />
+          <img src={pokemon.officialArt} alt="Pokemon logo" />
         </figure>
       </div>
       <div class="media-content">
@@ -62,21 +38,6 @@
           <span class="is-capitalized is-size-4 title has-text-white m-0 mr-2"
             >{pokemon.name}</span
           >
-          <!-- <audio id={`track-${pokemon.id}`}>
-            <source src={growlAudio} type="audio/ogg" />
-            Your browser does not support the audio element.
-          </audio>
-          <div id="player-container" class="is-flex">
-            <button
-              id={`play-pause-${pokemon.id}`}
-              name={`play-pause-${pokemon.id}`}
-              class="play play-pause-button"
-              aria-label="Play button"
-              on:click={handlePlayPause}
-            >
-              Play
-            </button>
-          </div> -->
         </div>
         <div
           class="pokemon-info is-flex is-flex-direction-column is-justify-content-space-between gap-1"

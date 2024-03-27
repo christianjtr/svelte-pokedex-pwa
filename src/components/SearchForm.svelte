@@ -1,9 +1,17 @@
 <script>
-  const handleOnMouseDown = event => {
-    event.prevenDefault();
-  };
+  import { createEventDispatcher } from 'svelte';
 
-  const handleOnSubmit = event => {};
+  const dispatch = createEventDispatcher();
+
+  function submitForm(data) {
+    dispatch('submit-form', data);
+  }
+
+  const handleOnSubmit = event => {
+    const formData = new FormData(event.target);
+    const query = formData.get('pokemon');
+    submitForm({ query });
+  };
 </script>
 
 <form
@@ -20,6 +28,7 @@
         id="pokemon"
         name="pokemon"
         type="text"
+        autocomplete="off"
         placeholder="Ex: Pikachu, Bulbasaur, ..."
         class="input is-rounded"
         aria-label="Search input for pokemons"
@@ -28,28 +37,5 @@
         <i class="fas fa-search"></i>
       </span>
     </p>
-    <p class="control">
-      <button
-        id="btn-microphone"
-        name="btn-microphone"
-        aria-label="Microphone button"
-        class="button btn-microphone"
-        on:mousedown={handleOnMouseDown}
-      >
-        <i class="fas fa-microphone"></i>
-      </button>
-    </p>
   </div>
 </form>
-
-<style>
-  .search-form {
-    --btn-round-dimension-size: 2.5rem;
-
-    & .btn-microphone {
-      border-radius: 50%;
-      height: var(--btn-round-dimension-size);
-      width: var(--btn-round-dimension-size);
-    }
-  }
-</style>

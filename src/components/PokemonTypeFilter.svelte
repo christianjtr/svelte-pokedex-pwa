@@ -1,14 +1,15 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import { pokemonTypeFetchServiceStore } from '../stores/pokemonTypesStore';
   import { pokemonListFilterStore } from '../stores/pokemonListFiltersStore';
 
   export const clearFilterElements = () => {
+    resetFilters();
     typeFiltersElements.forEach(element => element.classList.remove('clicked'));
   };
 
   const { isLoading, types, fetchPokemonTypes } = pokemonTypeFetchServiceStore;
-  const { toggleTypeFilter } = pokemonListFilterStore;
+  const { reset: resetFilters, toggleTypeFilter } = pokemonListFilterStore;
 
   let typeFiltersElements = [];
 
@@ -19,6 +20,10 @@
 
   onMount(() => {
     fetchPokemonTypes();
+  });
+
+  onDestroy(() => {
+    resetFilters();
   });
 </script>
 

@@ -1,25 +1,31 @@
 <script>
-  import { onMount } from 'svelte';
-  import PokemonList from './components/PokemonList.svelte';
-  import MiniGlassLedLight from './components/MiniGlassLedLight.svelte';
+  import PokemonListTable from './partials/PokemonListTable.partial.svelte';
+  import PokemonDetail from './partials/PokemonDetail.partial.svelte';
   import SearchForm from './components/SearchForm.svelte';
-  import PokemonTypeFilter from './components/PokemonTypeFilter.svelte';
-  import { pokemonListFetchServiceStore } from './stores/pokemonListStore';
-  import { pokemonListFilterStore } from './stores/pokemonListFiltersStore';
+  import MiniGlassLedLight from './components/MiniGlassLedLight.svelte';
+  import { pokemonFetchServiceStore } from './stores/pokemonStore';
 
-  const { hasPokemons, pokemons, fetchPokemons } = pokemonListFetchServiceStore;
-  const { reset } = pokemonListFilterStore;
+  const {
+    pokemon,
+    reset: resetPokemon,
+    fetchPokemonByName
+  } = pokemonFetchServiceStore;
 
-  let clearFilterElements;
+  const ledLights = ['red', 'yellow', 'green'];
 
-  const handleOnClearFilters = () => {
-    reset();
-    clearFilterElements();
+  const handleOnChoosePokemon = event => {
+    const { pokemonName } = event.detail;
+    fetchPokemonByName(pokemonName);
   };
 
-  onMount(() => {
-    fetchPokemons();
-  });
+  const handleOnClearPokemon = () => {
+    resetPokemon();
+  };
+
+  const handleOnSubmitSearchForm = event => {
+    const { query } = event.detail;
+    fetchPokemonByName(query);
+  };
 </script>
 
 <main class="is-flex is-justify-content-center">
@@ -37,56 +43,21 @@
           <div class="glass-button__reflect"></div>
         </div>
         <div>
-          <MiniGlassLedLight theme="red" />
-          <MiniGlassLedLight theme="yellow" />
-          <MiniGlassLedLight theme="green" />
+          {#each ledLights as ledLight}
+            <MiniGlassLedLight theme={ledLight} />
+          {/each}
         </div>
       </div>
       <div class="mx-6">
-        <SearchForm />
+        <SearchForm on:submit-form={handleOnSubmitSearchForm} />
       </div>
     </div>
     <div class="hero-body pokedex__container">
-      <div
-        class="container is-flex is-flex-direction-column is-justify-content-space-between is-fullheight"
-      >
-        <div class="columns" on>
-          <div class="column is-2">
-            <PokemonTypeFilter bind:clearFilterElements />
-          </div>
-          <div class="column is-10">
-            <div
-              class="is-flex is-justify-content-space-between is-align-items-baseline mb-1"
-            >
-              <h1 class="title is-size-5">Pokémons</h1>
-              <button
-                id="btn-remove-filters"
-                name="btn-remove-filters"
-                on:click={handleOnClearFilters}
-                class="button is-small is-rounded"
-              >
-                <i class="fa fa-filter mr-1"></i>
-                Clear filters
-              </button>
-            </div>
-
-            {#if $hasPokemons}
-              <PokemonList pokemons={$pokemons} />
-            {/if}
-          </div>
-        </div>
-        <!-- <div class="grid"> -->
-        <!-- <div class="cell"> -->
-        <!-- <figure class="image is-square">
-              <img
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg"
-                alt="Pokemon gif"
-              />
-            </figure> -->
-        <!-- </div> -->
-        <!-- <div class="cell"></div> -->
-        <!-- </div> -->
-      </div>
+      {#if $pokemon}
+        <PokemonDetail {pokemon} onBackToList={handleOnClearPokemon} />
+      {:else}
+        <PokemonListTable on:choose-pokemon={handleOnChoosePokemon} />
+      {/if}
     </div>
   </section>
 </main>
