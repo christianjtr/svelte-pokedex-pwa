@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store';
 import { getPokemonByName } from '../services/apis/pokemon/pokemon';
 import { generateKey, setItemWithExpirationTime, getItemWithExpirationTime } from '../services/localStorage/localStorage.services';
+import { Pokemon } from '../adapters/pokemon.adapter';
 
 function createPokemonFetchServiceStore() {
 	
@@ -14,14 +15,16 @@ function createPokemonFetchServiceStore() {
 
             let data = null;
             
-            const key = generateKey(query);
+            const key = generateKey(`fetchPokemonByName_${String(name).toLowerCase()}`);
             data = getItemWithExpirationTime(key);
 
-            if(!data) {
-                data = await getPokemonByName(name);
+            if(data) {
+                pokemon.set(new Pokemon(data));
+                return;
             }
 
-            pokemon.set(data);
+            data = await getPokemonByName(name);
+            pokemon.set(new Pokemon(data));
             setItemWithExpirationTime(key, data);
         } catch {
             hasError.set(true);
