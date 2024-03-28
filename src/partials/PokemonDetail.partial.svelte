@@ -72,6 +72,26 @@
       <div
         class="cell px-5 is-flex is-flex-direction-column is-justify-content-center"
       >
+        <div class="playable-container mb-3">
+          <audio id="track" bind:this={track}>
+            <source src={growlAudio} type="audio/ogg" />
+            Your browser does not support the audio element.
+          </audio>
+          <div class="is-flex is-align-items-center">
+            <button
+              id="btn-growl"
+              name="btn-growl"
+              class="button btn-growl is-rounded is-small"
+              aria-label="Button growl"
+              bind:this={controlBtn}
+              on:click={handlePlayPause}
+            >
+              <i class={`fa mr-2 ${isPlayingAudio ? 'fa-pause' : 'fa-play'}`}
+              ></i>
+              Make it growl!
+            </button>
+          </div>
+        </div>
         <span class="title is-size-5 m-0">Basics</span>
         <ul class="my-3">
           <li class="is-flex is-justify-content-space-between">
@@ -107,26 +127,6 @@
         <h1 class="title is-size-4 is-capitalized has-text-centered my-5">
           {data.name}
         </h1>
-        <div class="playable-container">
-          <audio id="track" bind:this={track}>
-            <source src={growlAudio} type="audio/ogg" />
-            Your browser does not support the audio element.
-          </audio>
-          <div class="is-flex is-align-items-center">
-            <button
-              id="btn-growl"
-              name="btn-growl"
-              class="button btn-growl is-rounded is-small"
-              aria-label="Button growl"
-              bind:this={controlBtn}
-              on:click={handlePlayPause}
-            >
-              <i class={`fa mr-2 ${isPlayingAudio ? 'fa-pause' : 'fa-play'}`}
-              ></i>
-              Growl
-            </button>
-          </div>
-        </div>
       </div>
       <div class="cell is-col-span-3 px-3">
         <PokemonDescription species={data.species} />
@@ -152,12 +152,6 @@
         width: 100%;
         height: 70%;
         margin-top: 1.875rem;
-      }
-
-      & .playable-container {
-        position: absolute;
-        right: 0;
-        top: 2%;
       }
     }
 
