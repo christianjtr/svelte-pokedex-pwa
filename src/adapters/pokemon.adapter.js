@@ -56,7 +56,29 @@ class Pokemon {
     }
 }
 
+class PokemonDescription {
+    constructor(description) {
+        this.description = description;
+    }
+
+    get(language = "en") {
+        const description = {
+            baseHappiness: this.description.base_happiness,
+            growthRate: this.description.growth_rate.name,
+            habitat: this.description.habitat.name,
+            shape: this.description.shape.name,
+            descriptions: this.description.flavor_text_entries
+            .filter((description) => description.language.name === language)
+            .map(({flavor_text, version}) => ({text: flavor_text, version: version.name}))
+        }
+
+        return description;
+
+    }
+}
+
 export {
     PaginatedGroup,
-    Pokemon
+    Pokemon,
+    PokemonDescription
 }
