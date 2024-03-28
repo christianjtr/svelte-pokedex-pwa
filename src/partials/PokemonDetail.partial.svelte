@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from 'svelte';
   import humanizeString from 'humanize-string';
   import Scatterpolar from '../components/Charts/Scatterpolar.svelte';
+  import PokemonDescription from '../components/PokemonDescription.svelte';
 
   export let pokemon;
   export let onBackToList;
@@ -68,7 +69,9 @@
   </div>
   <div class="fixed-grid has-6-cols mt-5">
     <div class="grid">
-      <div class="cell px-5">
+      <div
+        class="cell px-5 is-flex is-flex-direction-column is-justify-content-center"
+      >
         <span class="title is-size-5 m-0">Basics</span>
         <ul class="my-3">
           <li class="is-flex is-justify-content-space-between">
@@ -99,7 +102,7 @@
       </div>
       <div class="cell pokemon-container is-col-span-2">
         <div class="pokemon-image is-flex is-justify-content-center">
-          <img src={data.officialArt} alt={`Pokemon ${data.name} image`} />
+          <img src={data.image} alt={`Pokemon ${data.name} image`} />
         </div>
         <h1 class="title is-size-4 is-capitalized has-text-centered my-5">
           {data.name}
@@ -126,6 +129,7 @@
         </div>
       </div>
       <div class="cell is-col-span-3 px-3">
+        <PokemonDescription species={data.species} />
         <span class="title is-size-5 m-0">Stats</span>
         <Scatterpolar source={stats} />
       </div>
@@ -153,7 +157,7 @@
       & .playable-container {
         position: absolute;
         right: 0;
-        top: 0;
+        top: 2%;
       }
     }
 

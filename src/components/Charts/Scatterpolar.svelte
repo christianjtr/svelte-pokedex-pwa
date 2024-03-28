@@ -33,7 +33,7 @@
     showlegend: false,
     paper_bgcolor: 'rgba(0,0,0,0)',
     plot_bgcolor: 'rgba(0,0,0,0)',
-    margin: { l: 100, r: 100, b: 0, t: 0 }
+    margin: { l: 120, r: 120, b: 0, t: 0 }
   };
 
   onMount(() => {
