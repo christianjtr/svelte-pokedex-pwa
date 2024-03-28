@@ -41,7 +41,7 @@
 
 <div class="mb-5">
   {#if data}
-    <p class="mb-4">
+    <p class="mb-4 is-size-4">
       <span class="is-size-3 has-text-link has-text-weight-semibold">“</span
       >{data.description}
     </p>
