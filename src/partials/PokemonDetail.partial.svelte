@@ -11,6 +11,24 @@
   let controlBtn;
   let isPlayingAudio = false;
 
+  const bgColors = {
+    grass: '#49d0b0',
+    bug: '#8ad049',
+    normal: '#be69c7',
+    fairy: '#db749f',
+    fire: '#f05267',
+    water: '#44bce0',
+    electric: 'rgb(223, 235, 67)',
+    poison: 'rgb(130, 175, 189)',
+    ground: 'rgb(136, 130, 94)',
+    fighting: 'rgb(218, 153, 70)',
+    psychic: 'rgb(112, 62, 62)',
+    rock: 'rgb(161, 161, 161)',
+    ghost: 'rgb(71, 134, 120)',
+    ice: 'rgb(187, 243, 231)',
+    dragon: 'rgb(236, 133, 48)'
+  };
+
   const setIsPlaying = value => {
     isPlayingAudio = value;
   };
@@ -121,7 +139,10 @@
         </ul>
       </div>
       <div class="cell pokemon-container is-col-span-2">
-        <div class="pokemon-image is-flex is-justify-content-center">
+        <div
+          class="pokemon-image is-flex is-justify-content-center"
+          style={`--bg-color:${bgColors[data.types[0]]}`}
+        >
           <img src={data.image} alt={`Pokemon ${data.name} image`} />
         </div>
         <h1 class="title is-size-4 is-capitalized has-text-centered my-5">
@@ -149,12 +170,28 @@
       position: relative;
 
       & .pokemon-image {
-        width: 100%;
-        height: 70%;
+        --bg-color: rgba(0, 0, 0, 0);
         margin-top: 1.875rem;
+        position: relative;
+      }
+
+      & .pokemon-image:before {
+        content: '';
+        clip-path: circle(50%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: 90%;
+        background: var(--bg-color);
+        filter: blur(30px);
       }
     }
-
+    & img {
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+    }
     & button:not(.btn-growl) {
       border-radius: 50%;
       height: var(--btn-round-dimension-size);
