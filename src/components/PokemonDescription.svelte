@@ -97,7 +97,7 @@
 <style>
   .pokemon-description {
     & button.active {
-      background: slateblue;
+      background: #5a6efe;
       color: white;
       transition: background 0.5s;
     }

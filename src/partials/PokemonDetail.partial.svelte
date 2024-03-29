@@ -26,7 +26,8 @@
     rock: 'rgb(161, 161, 161)',
     ghost: 'rgb(71, 134, 120)',
     ice: 'rgb(187, 243, 231)',
-    dragon: 'rgb(236, 133, 48)'
+    dragon: 'rgb(236, 133, 48)',
+    flying: '#ffffff'
   };
 
   const setIsPlaying = value => {
@@ -110,7 +111,7 @@
             </button>
           </div>
         </div>
-        <span class="title is-size-5 m-0">Basics</span>
+        <span class="title is-size-5 m-0">Base Info.</span>
         <ul class="my-3">
           <li class="is-flex is-justify-content-space-between">
             <span>Exp.</span>
@@ -145,13 +146,23 @@
         >
           <img src={data.image} alt={`Pokemon ${data.name} image`} />
         </div>
-        <h1 class="title is-size-4 is-capitalized has-text-centered my-5">
+        <h1
+          class="title is-size-4 is-capitalized has-text-centered my-4 pokemon-name has-text-white"
+        >
           {data.name}
         </h1>
       </div>
       <div class="cell is-col-span-3 px-3">
         <PokemonDescription species={data.species} />
         <span class="title is-size-5 m-0">Stats</span>
+        <p class="is-flex my-3">
+          {#each data.types as type}
+            <span
+              class="tag is-rounded is-medium mx-1 pokemon-type"
+              style={`--bg-color:${bgColors[type]}`}>{type}</span
+            >
+          {/each}
+        </p>
         <Scatterpolar source={stats} markerColor={bgColors[data.types[0]]} />
       </div>
       <div class="cell has-background-primary is-col-span-6">...</div>
@@ -186,6 +197,19 @@
         background: var(--bg-color);
         filter: blur(30px);
       }
+    }
+
+    & .pokemon-name {
+      background-color: #5a6efe;
+      border-radius: 0 0 3.125rem 3.125rem;
+      padding: 0.3125rem;
+    }
+
+    & .pokemon-type {
+      --bg-color: rgba(0, 0, 0, 0);
+
+      background-color: var(--bg-color);
+      border: 0.1875rem solid #dddddd;
     }
     & img {
       z-index: 1;

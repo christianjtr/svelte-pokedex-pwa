@@ -57,7 +57,7 @@
     }
 
     & button.clicked {
-      background: slateblue;
+      background: #5a6efe;
       color: white;
       transition: background 0.5s;
     }
