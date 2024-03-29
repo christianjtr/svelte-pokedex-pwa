@@ -189,7 +189,7 @@
     & .pokemon-type {
       --bg-color: rgba(0, 0, 0, 0);
 
-      background-color: var(--bg-color);
+      background-color: color-mix(in srgb, var(--bg-color) 50%, white);
       border: 0.1875rem solid #dddddd;
     }
     & img {

@@ -38,7 +38,7 @@
     border: 0.0063rem solid floralwhite;
     color: rgba(0, 0, 0, 0.7);
     font-weight: 500;
-    background-color: var(--bg-color);
+    background-color: color-mix(in srgb, var(--bg-color) 70%, white);
   }
 
   & .title-container {
