@@ -2,6 +2,7 @@
   import { onDestroy, onMount } from 'svelte';
   import humanizeString from 'humanize-string';
   import { pokemonDescriptionStore } from '../stores/pokemonDescriptionStore';
+  import { createSynthesisSpeech } from '../services/synthesisSpeech/synthesisSpeech';
 
   export let species;
 
@@ -39,16 +40,10 @@
   };
 
   $: data = setData($description);
-  $: speech = (() => {
-    const speechToSay = new SpeechSynthesisUtterance(data?.description);
-    speechToSay.volume = 1;
-    speechToSay.rate = 0.95;
-    speechToSay.pitch = 0.5;
-    speechToSay.voice = speechSynthesis.getVoices()[51]; // Google US English voice...
-    speechToSay.onstart = () => (isSpeaking = true);
-    speechToSay.onend = () => (isSpeaking = false);
-    return speechToSay;
-  })();
+  $: speech = createSynthesisSpeech(data?.description, {
+    onstart: () => (isSpeaking = true),
+    onend: () => (isSpeaking = false)
+  });
 
   onMount(() => {
     fetchPokemonDescription(name, url);
@@ -76,11 +71,26 @@
       <span class="is-size-3 has-text-link has-text-weight-semibold">“</span
       >{data.description}
     </p>
-    <p class="is-flex is-justify-content-space-between">
-      <span>🏡 {data.habitat}</span>
-      <span>🔲 {data.shape}</span>
-      <span>📈 {data.growthRate} (Growth rate)</span>
-    </p>
+    <div class="is-flex is-justify-content-space-between">
+      <p>
+        <span class="is-size-6 has-text-weight-semibold has-text-link"
+          >Habitat:</span
+        >
+        <span>{data.habitat}</span>
+      </p>
+      <p>
+        <span class="is-size-6 has-text-weight-semibold has-text-link"
+          >Shape:</span
+        >
+        <span>{data.shape}</span>
+      </p>
+      <p>
+        <span class="is-size-6 has-text-weight-semibold has-text-link"
+          >Growth rate:</span
+        >
+        <span>{data.growthRate}</span>
+      </p>
+    </div>
   {/if}
 </div>
 
