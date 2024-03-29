@@ -152,7 +152,7 @@
       <div class="cell is-col-span-3 px-3">
         <PokemonDescription species={data.species} />
         <span class="title is-size-5 m-0">Stats</span>
-        <Scatterpolar source={stats} />
+        <Scatterpolar source={stats} markerColor={bgColors[data.types[0]]} />
       </div>
       <div class="cell has-background-primary is-col-span-6">...</div>
     </div>

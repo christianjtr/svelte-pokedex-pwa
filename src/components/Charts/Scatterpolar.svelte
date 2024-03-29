@@ -3,6 +3,7 @@
   import Plotly from 'plotly.js-dist';
 
   export let source;
+  export let markerColor;
 
   const { categories, values } = source.reduce(
     (acc, item) => {
@@ -14,12 +15,19 @@
     { categories: [], values: [] }
   );
 
-  const data = [
+  const trace = [
     {
       type: 'scatterpolar',
       r: [...values, ...values.slice(0, 1)],
       theta: [...categories, ...categories.slice(0, 1)],
-      fill: 'toself'
+      mode: 'lines+markers+text',
+      text: [...values, ...values.slice(0, 1)],
+      textposition: 'top',
+      fill: 'toself',
+      marker: {
+        size: 10,
+        color: markerColor
+      }
     }
   ];
 
@@ -37,7 +45,7 @@
   };
 
   onMount(() => {
-    Plotly.newPlot('my-scatterpolar-chart', data, layout, {
+    Plotly.newPlot('my-scatterpolar-chart', trace, layout, {
       displayModeBar: false,
       staticPlot: true,
       scrollZoom: false,
