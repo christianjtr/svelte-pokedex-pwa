@@ -1,33 +1,53 @@
-const getVoices = (voice = 0) => {
-    return window.speechSynthesis.getVoices()[voice];
-}
-
-const defaultHandlers = { 
+const defaultOpts = { 
+    volume: 1, 
+    rate: 0.95, 
+    pitch: 0.5,
+    voice: 51, // Google US English...
     onstart: () => {},
     onend: () => {}
 };
 
-const defaultOpts = { 
-    volume: 1, 
-    rate: 0.95, 
-    pitch: 0.5
-};
+class SpeechSynthesis {
+    constructor(speech = '', opts = defaultOpts) {
+        
+        this.speechToSay = new SpeechSynthesisUtterance(speech);
+        
+        speechSynthesis.addEventListener("voiceschanged", () => {
+            const voices = speechSynthesis.getVoices();
+            this.speechToSay.voice = voices?.[voice];
+        });
 
-const createSynthesisSpeech = (speech, handlers = defaultHandlers, voice = 51, opts = defaultOpts) => {
-    const { onstart, onend} = handlers;
-    const {volume, rate, pitch} = opts;
+        const {volume, rate, pitch, voice, onstart, onend} = opts;
+        
+        this.speechToSay.volume = volume;
+        this.speechToSay.rate = rate;
+        this.speechToSay.pitch = pitch;
+        this.speechToSay.onstart = onstart();
+        this.speechToSay.onend = onend();
+    }
 
-    const speechToSay = new SpeechSynthesisUtterance(speech);
-    speechToSay.volume = volume;
-    speechToSay.rate = rate;
-    speechToSay.pitch = pitch;
-    speechToSay.voice = getVoices(voice); // Google US English voice...
-    speechToSay.onstart = onstart;
-    speechToSay.onend = onend;
-    
-    return speechToSay;
+    setSpeechToSay(speech, opts) {
+        const {
+            volume = defaultOpts.volume, 
+            rate = defaultOpts.rate, 
+            pitch = defaultOpts.pitch, 
+            onstart, 
+            onend
+        } = opts;
+        
+        this.speechToSay.text = speech;
+        this.speechToSay.volume = volume;
+        this.speechToSay.rate = rate;
+        this.speechToSay.pitch = pitch;
+        this.speechToSay.onstart = onstart;
+        this.speechToSay.onend = onend;
+
+        return this;
+    }
+
+    get() {
+        return this.speechToSay;
+    }
 }
 
-export {
-    createSynthesisSpeech,
-}
+export default SpeechSynthesis;

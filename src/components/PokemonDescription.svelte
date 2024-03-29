@@ -2,12 +2,11 @@
   import { onDestroy, onMount } from 'svelte';
   import humanizeString from 'humanize-string';
   import { pokemonDescriptionStore } from '../stores/pokemonDescriptionStore';
-  import { createSynthesisSpeech } from '../services/synthesisSpeech/synthesisSpeech';
+  import SpeechSynthesis from '../services/synthesisSpeech/synthesisSpeech';
 
   export let species;
 
-  const { name, url } = species;
-
+  let speechToSay;
   let isSpeaking = false;
 
   const isSpeechSynthesisAvailable = 'speechSynthesis' in window;
@@ -39,14 +38,17 @@
     return rawData;
   };
 
+  $: species && fetchPokemonDescription(species.name, species.url);
   $: data = setData($description);
-  $: speech = createSynthesisSpeech(data?.description, {
-    onstart: () => (isSpeaking = true),
-    onend: () => (isSpeaking = false)
-  });
+  $: speech = speechToSay
+    ?.setSpeechToSay(data?.description, {
+      onstart: () => (isSpeaking = true),
+      onend: () => (isSpeaking = false)
+    })
+    .get();
 
   onMount(() => {
-    fetchPokemonDescription(name, url);
+    speechToSay = new SpeechSynthesis();
   });
 
   onDestroy(() => {

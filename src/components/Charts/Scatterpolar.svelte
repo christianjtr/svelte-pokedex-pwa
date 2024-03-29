@@ -5,17 +5,22 @@
   export let source;
   export let markerColor;
 
-  const { categories, values } = source.reduce(
-    (acc, item) => {
-      return {
-        categories: [...acc.categories, item.key],
-        values: [...acc.values, item.value]
-      };
-    },
-    { categories: [], values: [] }
-  );
+  let myChartContainerElement;
 
-  const trace = [
+  const setData = () => {
+    return source.reduce(
+      (acc, item) => {
+        return {
+          categories: [...acc.categories, item.key],
+          values: [...acc.values, item.value]
+        };
+      },
+      { categories: [], values: [] }
+    );
+  };
+
+  $: ({ categories, values } = source && setData());
+  $: trace = [
     {
       type: 'scatterpolar',
       r: [...values, ...values.slice(0, 1)],
@@ -30,8 +35,7 @@
       }
     }
   ];
-
-  const layout = {
+  $: layout = {
     polar: {
       radialaxis: {
         visible: true,
@@ -44,15 +48,17 @@
     margin: { l: 120, r: 120, b: 0, t: 0 }
   };
 
-  onMount(() => {
-    Plotly.newPlot('my-scatterpolar-chart', trace, layout, {
+  const createChart = () => {
+    Plotly.newPlot(myChartContainerElement, trace, layout, {
       displayModeBar: false,
       staticPlot: true,
       scrollZoom: false,
       responsive: false,
       responsive: true
     });
-  });
+  };
+
+  $: myChartContainerElement && source && createChart();
 </script>
 
-<div id="my-scatterpolar-chart"></div>
+<div id="my-scatterpolar-chart" bind:this={myChartContainerElement}></div>
