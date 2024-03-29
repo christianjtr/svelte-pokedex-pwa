@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { bgColors } from '../../utils/pokemonColors';
   import './pokemonItemList.css';
 
   export let pokemon;
@@ -26,7 +27,7 @@
   on:keypress|preventDefault
   on:click={handleOnClick}
 >
-  <div class={`box ${primaryType} is-flex`}>
+  <div class="box is-flex" style={`--bg-color:${bgColors[primaryType]}`}>
     <article class="media is-flex is-align-items-center">
       <div class="media-left mr-5">
         <figure class="image is-96x96">
@@ -52,7 +53,10 @@
           </div>
           <div class="tag-container is-flex">
             {#each pokemon.types as type}
-              <span class={`tag is-rounded mx-1 ${type}`}>{type}</span>
+              <span
+                class="tag is-rounded mx-1"
+                style={`--bg-color:${bgColors[type]}`}>{type}</span
+              >
             {/each}
           </div>
         </div>

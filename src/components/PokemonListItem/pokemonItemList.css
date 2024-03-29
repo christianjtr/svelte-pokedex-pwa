@@ -4,7 +4,10 @@
   border-radius: 0.9375rem;
 
   & .box {
+    --bg-color: rgba(0, 0, 0, 0);
+
     min-height: 9.375rem;
+    background-color: var(--bg-color);
   }
 
   & .media {
@@ -28,11 +31,14 @@
   }
 
   & span.tag {
+    --bg-color: rgba(0, 0, 0, 0);
+
     filter: brightness(130%);
     -webkit-filter: brightness(130%);
     border: 0.0063rem solid floralwhite;
     color: rgba(0, 0, 0, 0.7);
     font-weight: 500;
+    background-color: var(--bg-color);
   }
 
   & .title-container {
@@ -45,69 +51,5 @@
     gap: 0.625rem;
     color: white;
     font-weight: 600;
-  }
-
-  & .default {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-
-  & .grass {
-    background-color: #49d0b0;
-  }
-
-  & .bug {
-    background-color: #8ad049;
-  }
-
-  & .normal {
-    background-color: #be69c7;
-  }
-
-  & .fairy {
-    background-color: #db749f;
-  }
-
-  & .fire {
-    background-color: #f05267;
-  }
-
-  & .water {
-    background-color: #44bce0;
-  }
-
-  & .electric {
-    background-color: rgb(223, 235, 67);
-  }
-
-  & .poison {
-    background-color: rgb(130, 175, 189);
-  }
-
-  & .ground {
-    background-color: rgb(136, 130, 94);
-  }
-
-  & .fighting {
-    background-color: rgb(218, 153, 70);
-  }
-
-  & .psychic {
-    background-color: rgb(112, 62, 62);
-  }
-
-  & .rock {
-    background-color: rgb(161, 161, 161);
-  }
-
-  & .ghost {
-    background-color: rgb(71, 134, 120);
-  }
-
-  & .ice {
-    background-color: rgb(187, 243, 231);
-  }
-
-  & .dragon {
-    background-color: rgb(236, 133, 48);
   }
 }
