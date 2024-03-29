@@ -14,7 +14,9 @@ class SpeechSynthesis {
         
         speechSynthesis.addEventListener("voiceschanged", () => {
             const voices = speechSynthesis.getVoices();
-            this.speechToSay.voice = voices?.[voice];
+            if(voices.length && voices.length > 0) {
+                this.speechToSay.voice = voices?.[voice];
+            }
         });
 
         const {volume, rate, pitch, voice, onstart, onend} = opts;

@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte';
   import Plotly from 'plotly.js-dist';
 
   export let source;

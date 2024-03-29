@@ -48,6 +48,7 @@
     .get();
 
   onMount(() => {
+    window.speechSynthesis.getVoices();
     speechToSay = new SpeechSynthesis();
   });
 
