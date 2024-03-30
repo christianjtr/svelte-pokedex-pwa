@@ -22,7 +22,6 @@
 <style>
   .mini-glass-led-light {
     --background-color: rbga(0, 0, 0, 0);
-
     width: 20px;
     height: 20px;
     margin-right: 10px;
@@ -30,24 +29,10 @@
     box-shadow:
       inset rgba(0, 0, 0, 0.6) 0 -1px 1px,
       #f52e37 0 2px 12px;
-    background-color: color-mix(in srgb, black 20%, var(--background-color));
+    background-color: color-mix(in srgb, var(--background-color) 100%, black);
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -o-border-radius: 20px;
-
-    /* animation: blinking 1s infinite; */
-  }
-
-  @keyframes blinking {
-    from {
-      background-color: var(--background-color);
-    }
-    50% {
-      background-color: color-mix(in srgb, var(--background-color) 80%, black);
-    }
-    to {
-      background-color: var(--background-color);
-    }
   }
 </style>

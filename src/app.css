@@ -76,42 +76,10 @@ img,
   width: 60px;
   height: 60px;
   border: 5px solid #fff;
-
-  box-shadow: 0 0 10px #490000;
-  -webkit-box-shadow: 0 0 10px #490000;
-  -moz-box-shadow: 0 0 10px #490000;
-  -o-box-shadow: 0 0 10px #490000;
-
-  background: radial-gradient(#05fbfb, #29abe3);
-  background: -webkit-radial-gradient(#05fbfb, #29abe3);
-  background: -moz-radial-gradient(#05fbfb, #29abe3);
-  background: -o-radial-gradient(#05fbfb, #29abe3);
-
+  background: color-mix(in srgb, #05fbfb 90%, black);
+  box-shadow: rgba(0, 0, 0, 1) 0 1px 1px;
   border-radius: 35px;
   -webkit-border-radius: 35px;
   -moz-border-radius: 35px;
   -o-border-radius: 35px;
-
-  /* animation: blinking 1s infinite; */
-}
-
-@keyframes blinking {
-  from {
-    background: radial-gradient(#05fbfb, #29abe3);
-    background: -webkit-radial-gradient(#05fbfb, #29abe3);
-    background: -moz-radial-gradient(#05fbfb, #29abe3);
-    background: -o-radial-gradient(#05fbfb, #29abe3);
-  }
-  50% {
-    background: radial-gradient(#05fbfb, #07597c);
-    background: -webkit-radial-gradient(#05fbfb, #07597c);
-    background: -moz-radial-gradient(#05fbfb, #07597c);
-    background: -o-radial-gradient(#05fbfb, #07597c);
-  }
-  to {
-    background: radial-gradient(#05fbfb, #29abe3);
-    background: -webkit-radial-gradient(#05fbfb, #29abe3);
-    background: -moz-radial-gradient(#05fbfb, #29abe3);
-    background: -o-radial-gradient(#05fbfb, #29abe3);
-  }
 }
