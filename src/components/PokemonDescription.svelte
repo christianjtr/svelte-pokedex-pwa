@@ -75,30 +75,42 @@
       <span class="is-size-3 has-text-link has-text-weight-semibold">“</span
       >{data.description}
     </p>
-    <div class="is-flex is-justify-content-space-between">
+    <div class="pokemon-characteristics">
       <p>
-        <span class="is-size-6 has-text-weight-semibold has-text-link"
-          >Base happiness</span
+        <span class="is-size-6 has-text-weight-semibold has-text-link mb-3"
+          >😄 Happiness</span
         >
-        <span class="is-block">{data.baseHappiness} pts</span>
+        <span class="is-block"
+          >The happiness when caught by a normal Pokéball</span
+        >
+        <span class="is-block has-text-weight-semibold"
+          >{data.baseHappiness} pts</span
+        >
       </p>
       <p>
-        <span class="is-size-6 has-text-weight-semibold has-text-link"
-          >Habitat</span
+        <span class="is-size-6 has-text-weight-semibold has-text-link mb-3"
+          >🏠 Habitat</span
         >
-        <span class="is-block">{data.habitat}</span>
+        <span class="is-block">Areas where can be found</span>
+        <span class="is-block has-text-weight-semibold">{data.habitat}</span>
       </p>
       <p>
-        <span class="is-size-6 has-text-weight-semibold has-text-link"
-          >Shape</span
+        <span class="is-size-6 has-text-weight-semibold has-text-link mb-3"
+          >🔲 Shape</span
         >
-        <span class="is-block">{data.shape}</span>
+        <span class="is-block">
+          Shapes used for sorting Pokémon in a Pokédex.
+        </span>
+        <span class="is-block has-text-weight-semibold">{data.shape}</span>
       </p>
       <p>
-        <span class="is-size-6 has-text-weight-semibold has-text-link"
-          >Growth rate</span
+        <span class="is-size-6 has-text-weight-semibold has-text-link mb-3"
+          >📈 Growth rate</span
         >
-        <span class="is-block">{data.growthRate}</span>
+        <span class="is-block"
+          >Speed with which Pokémon gain levels through experience</span
+        >
+        <span class="is-block has-text-weight-semibold">{data.growthRate}</span>
       </p>
     </div>
   {/if}
@@ -110,6 +122,21 @@
       background: #5a6efe;
       color: white;
       transition: background 0.5s;
+    }
+  }
+
+  .pokemon-characteristics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    .pokemon-characteristics {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 0.625rem;
+      padding: 0 1.25rem;
     }
   }
 </style>
