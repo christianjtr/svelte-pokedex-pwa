@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import { pokemonFetchServiceStore } from '../stores/pokemonStore';
   import { pokemonEvolutionChainStore } from '../stores/pokemonEvolutionChain';
 
   export let species;
@@ -7,10 +8,23 @@
   const { pokemonEvolutions, fetchPokemonEvolutions } =
     pokemonEvolutionChainStore;
 
+  const { fetchPokemonByName } = pokemonFetchServiceStore;
+
+  const handleOnClick = (_, pokemonName) => {
+    fetchPokemonByName(pokemonName);
+  };
+
+  const handleOnKeyPress = (event, pokemonName) => {
+    if (event.key === 'Enter') {
+      fetchPokemonByName(pokemonName);
+    }
+  };
+
   const setEvolutionData = pokemonEvolutionsData => {
     return pokemonEvolutionsData?.map(pokemon => pokemon.get());
   };
 
+  $: species && fetchPokemonEvolutions(species.name, species.url);
   $: pokemons = setEvolutionData($pokemonEvolutions) || [];
 
   onMount(() => {
@@ -19,16 +33,20 @@
 </script>
 
 <div>
-  <span class="is-block title is-size-5">Evolution chain</span>
+  <span class="is-block title is-size-5">Evolutions</span>
   <div class="pokemon-evolution-container">
     {#if pokemons.length > 0}
       {#each pokemons as pokemon}
         <div
+          tabindex="0"
           class="is-flex is-flex-direction-column is-justify-content-center pokemon-evolution-card"
+          role="button"
+          on:keypress={event => handleOnKeyPress(event, pokemon.name)}
+          on:click={event => handleOnClick(event, pokemon.name)}
         >
           <figure class="image is-128x128">
             <img
-              src={pokemon.image}
+              src={pokemon.image || pokemon.officialArt}
               alt={`Pokemon ${pokemon.name} gif image`}
               class="m-0"
             />
@@ -41,6 +59,12 @@
       {/each}
     {/if}
   </div>
+  {#if pokemons.length === 0}
+    <div class="notification is-flex is-warning is-align-items-center">
+      <i class="fa fa-info-circle mr-2"></i>
+      No evolutions.
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -55,6 +79,11 @@
     padding: 1.25rem;
     border-radius: 1.25rem;
     border: 0.0313rem solid #dddddd;
+  }
+
+  .pokemon-evolution-card:hover {
+    cursor: pointer;
+    background: color-mix(in srgb, #5a6efe 20%, white);
   }
 
   .pokemon-evolution-card img {

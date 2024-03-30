@@ -14,6 +14,11 @@ function createPokemonEvolutionChainStore() {
             return evolutions;
         }
 
+        if(data.evolves_to.length > 1) {
+            data.evolves_to.map((evolveTo) => evolutions.push(evolveTo.species));
+            return evolutions;
+        }
+
         const baseSpecies = data.species;
         if(!evolutions.map(({ name }) => name).includes(baseSpecies.name)) {
             evolutions.push({...baseSpecies});    
@@ -23,7 +28,9 @@ function createPokemonEvolutionChainStore() {
         const { species } = evolution;
         
         evolutions.push({ ...species });
+
         
+
         getEvolutions(evolution, evolutions);
       
         return evolutions;

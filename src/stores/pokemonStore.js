@@ -14,8 +14,10 @@ function createPokemonFetchServiceStore() {
             isLoading.set(true);
 
             let data = null;
+
+            const lowerCasedName = String(name).toLowerCase();
             
-            const key = generateKey(`fetchPokemonByName_${String(name).toLowerCase()}`);
+            const key = generateKey(`fetchPokemonByName_${lowerCasedName}`);
             data = getItemWithExpirationTime(key);
 
             if(data) {
@@ -23,7 +25,7 @@ function createPokemonFetchServiceStore() {
                 return;
             }
 
-            data = await getPokemonByName(name);
+            data = await getPokemonByName(lowerCasedName);
             pokemon.set(new Pokemon(data));
             setItemWithExpirationTime(key, data);
         } catch {
