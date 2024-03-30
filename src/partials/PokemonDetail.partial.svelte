@@ -67,17 +67,47 @@
     </button>
     <span class="has-text-weight-semibold">Back to pokémons</span>
   </div>
-  <div class="fixed-grid has-6-cols mt-5">
-    <div class="grid">
+
+  <div class="custom-grid mt-6">
+    <div class="pokemon-container">
       <div
-        class="cell px-5 is-flex is-flex-direction-column is-justify-content-center"
+        class="pokemon-image is-flex is-justify-content-center"
+        style={`--bg-color:${bgColors[data.types[0]]}`}
+      >
+        <img src={data.image} alt={`Pokemon ${data.name} image`} />
+      </div>
+      <h1
+        class="title is-size-4 is-capitalized has-text-centered mb-6 pokemon-name has-text-white"
+      >
+        {data.name}
+      </h1>
+      <PokemonDescription species={data.species} />
+    </div>
+    <div>
+      <div
+        class="px-5 is-flex is-justify-content-space-between is-flex-direction-row pokemon-stats-container"
       >
         <div class="playable-container mb-3">
+          <span class="title is-size-5 m-0 is-block">Base Info.</span>
+          <ul class="my-3">
+            <li class="is-flex is-justify-content-space-between">
+              <span>Exp.</span>
+              <span>{data.experience} pts</span>
+            </li>
+            <li class="is-flex is-justify-content-space-between">
+              <span>Weight</span>
+              <span>{data.weight / 10} Kg</span>
+            </li>
+            <li class="is-flex is-justify-content-space-between">
+              <span>Height</span>
+              <span>{data.height * 10} cm</span>
+            </li>
+          </ul>
           <audio id="track" bind:this={track}>
             <source src={growlAudio} type="audio/ogg" />
             Your browser does not support the audio element.
           </audio>
-          <div class="is-flex is-align-items-center">
+          <div class="is-flex is-align-items-center my-5">
             <button
               id="btn-growl"
               name="btn-growl"
@@ -92,78 +122,66 @@
             </button>
           </div>
         </div>
-        <span class="title is-size-5 m-0">Base Info.</span>
-        <ul class="my-3">
-          <li class="is-flex is-justify-content-space-between">
-            <span>Exp.</span>
-            <span>{data.experience} pts</span>
-          </li>
-          <li class="is-flex is-justify-content-space-between">
-            <span>Weight</span>
-            <span>{data.weight / 10} Kg</span>
-          </li>
-          <li class="is-flex is-justify-content-space-between">
-            <span>Height</span>
-            <span>{data.height * 10} cm</span>
-          </li>
-        </ul>
-        <span class="title is-size-5 m-0">Moves</span>
-        <ul class="my-3">
-          {#each moves.splice(0, 5) as move}
-            <li>{move}</li>
-          {/each}
-        </ul>
-        <span class="title is-size-5 m-0">Abilities</span>
-        <ul class="my-3">
-          {#each abilities as ability}
-            <li>{ability}</li>
-          {/each}
-        </ul>
-      </div>
-      <div class="cell pokemon-container is-col-span-2">
-        <div
-          class="pokemon-image is-flex is-justify-content-center"
-          style={`--bg-color:${bgColors[data.types[0]]}`}
-        >
-          <img src={data.image} alt={`Pokemon ${data.name} image`} />
+        <div>
+          <span class="title is-size-5 m-0 is-block">Abilities</span>
+          <ul class="my-3">
+            {#each abilities as ability}
+              <li>{ability}</li>
+            {/each}
+          </ul>
+          <span class="title is-size-5 m-0 is-block">Types</span>
+          <p class="is-flex my-3">
+            {#each data.types as type}
+              <span
+                class="tag is-rounded is-medium mx-1 pokemon-type"
+                style={`--bg-color:${bgColors[type]}`}>{type}</span
+              >
+            {/each}
+          </p>
         </div>
-        <h1
-          class="title is-size-4 is-capitalized has-text-centered my-4 pokemon-name has-text-white"
-        >
-          {data.name}
-        </h1>
+        <div>
+          <span class="title is-size-5 m-0 is-block">Moves</span>
+          <ul class="my-3">
+            {#each moves.splice(0, 5) as move}
+              <li>{move}</li>
+            {/each}
+          </ul>
+        </div>
       </div>
-      <div class="cell is-col-span-3 px-3">
-        <PokemonDescription species={data.species} />
-        <span class="title is-size-5 m-0">Stats</span>
-        <p class="is-flex my-3">
-          {#each data.types as type}
-            <span
-              class="tag is-rounded is-medium mx-1 pokemon-type"
-              style={`--bg-color:${bgColors[type]}`}>{type}</span
-            >
-          {/each}
-        </p>
-        <Scatterpolar source={stats} markerColor={bgColors[data.types[0]]} />
+      <Scatterpolar source={stats} markerColor={bgColors[data.types[0]]} />
+      <div
+        class="cell has-background-primary has-background-primary is-col-span-6"
+      >
+        __EVOLUTION_CHAIN_HERE__
       </div>
-      <div class="cell has-background-primary is-col-span-6">...</div>
     </div>
   </div>
 </div>
 
 <style>
+  .custom-grid {
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    gap: 1.25rem;
+  }
+
   .pokemon-detail {
     --btn-round-dimension-size: 2.5rem;
 
     width: 100%;
     position: relative;
 
+    & .pokemon-stats-container {
+      gap: 0.625rem;
+    }
+
     & .pokemon-container {
       position: relative;
 
       & .pokemon-image {
         --bg-color: rgba(0, 0, 0, 0);
-        margin-top: 1.875rem;
+        margin-top: 3.125rem;
+        margin-bottom: 3.125rem;
         position: relative;
       }
 
@@ -171,12 +189,11 @@
         content: '';
         clip-path: circle(50%);
         position: absolute;
-        top: 0;
-        left: 0;
         width: 90%;
         height: 90%;
-        background: var(--bg-color);
-        filter: blur(30px);
+        background: color-mix(in srgb, var(--bg-color) 100%, white);
+        filter: blur(25px);
+        margin: 0 auto;
       }
     }
 
@@ -194,13 +211,27 @@
     }
     & img {
       z-index: 1;
-      width: 100%;
-      height: 100%;
+      width: 75%;
+      height: 75%;
+      margin: 0 auto;
     }
     & button:not(.btn-growl) {
       border-radius: 50%;
       height: var(--btn-round-dimension-size);
       width: var(--btn-round-dimension-size);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .custom-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pokemon-detail .pokemon-stats-container {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 3.125rem !important;
+      row-gap: 0 !important;
     }
   }
 </style>
