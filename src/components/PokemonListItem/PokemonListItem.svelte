@@ -31,7 +31,7 @@
     <article class="media is-flex is-align-items-center">
       <div class="media-left mr-5">
         <figure class="image is-96x96">
-          <img src={pokemon.image} alt="Pokemon logo" />
+          <img src={pokemon.image || pokemon.officialArt} alt="Pokemon logo" />
         </figure>
       </div>
       <div class="media-content">

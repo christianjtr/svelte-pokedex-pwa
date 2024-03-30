@@ -81,7 +81,7 @@
           >😄 Happiness</span
         >
         <span class="is-block"
-          >The happiness when caught by a normal Pokéball</span
+          >The happiness when caught by a normal Pokéball.</span
         >
         <span class="is-block has-text-weight-semibold"
           >{data.baseHappiness} pts</span
@@ -91,7 +91,7 @@
         <span class="is-size-6 has-text-weight-semibold has-text-link mb-3"
           >🏠 Habitat</span
         >
-        <span class="is-block">Areas where can be found</span>
+        <span class="is-block">Areas where can be found.</span>
         <span class="is-block has-text-weight-semibold">{data.habitat}</span>
       </p>
       <p>
@@ -108,7 +108,7 @@
           >📈 Growth rate</span
         >
         <span class="is-block"
-          >Speed with which Pokémon gain levels through experience</span
+          >Speed with which Pokémon gain levels through experience.</span
         >
         <span class="is-block has-text-weight-semibold">{data.growthRate}</span>
       </p>

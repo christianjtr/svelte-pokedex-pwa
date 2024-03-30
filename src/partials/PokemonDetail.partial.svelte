@@ -75,7 +75,10 @@
         class="pokemon-image is-flex is-justify-content-center"
         style={`--bg-color:${bgColors[data.types[0]]}`}
       >
-        <img src={data.image} alt={`Pokemon ${data.name} image`} />
+        <img
+          src={data.image || data.officialArt}
+          alt={`Pokemon ${data.name} image`}
+        />
       </div>
       <h1
         class="title is-size-4 is-capitalized has-text-centered mb-6 pokemon-name has-text-white"
