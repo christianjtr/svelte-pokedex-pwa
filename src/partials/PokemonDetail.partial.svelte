@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy, beforeUpdate } from 'svelte';
   import humanizeString from 'humanize-string';
   import Scatterpolar from '../components/Charts/Scatterpolar.svelte';
   import PokemonDescription from '../components/PokemonDescription.svelte';
@@ -44,7 +44,12 @@
   $: ({ data, stats, abilities, moves } = getData($pokemon));
   $: growlAudio = data.cries.latest || data.cries.legacy;
 
+  beforeUpdate(() => {
+    window.scrollTo(0, 0);
+  });
+
   onMount(() => {
+    window.scrollTo(0, 0);
     controlBtn.addEventListener('click', handlePlayPause);
     track.addEventListener('ended', () => setIsPlaying(false));
   });

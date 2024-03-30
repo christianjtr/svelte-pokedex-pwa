@@ -31,6 +31,19 @@ img,
   -moz-box-shadow: 1px 0px 10px 5px rgba(0, 0, 0, 0.2);
   max-width: 120ch;
   flex: 1;
+  position: relative;
+
+  & .btn-scroll-up {
+    position: fixed;
+    bottom: 50px;
+    right: 70px;
+    width: 60px;
+    height: 60px;
+    color: white;
+    background: #5a6efe;
+    border: none;
+    font-size: 25px;
+  }
 }
 
 .pokedex__container {
