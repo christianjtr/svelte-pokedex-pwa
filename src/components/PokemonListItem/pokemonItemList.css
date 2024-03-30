@@ -52,4 +52,9 @@
     color: white;
     font-weight: 600;
   }
+
+  & img {
+    width: inherit !important;
+    height: inherit !important;
+  }
 }

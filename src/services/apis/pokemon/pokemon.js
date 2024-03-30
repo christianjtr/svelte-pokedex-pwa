@@ -1,9 +1,9 @@
 import queryString from 'query-string';
 import { API_CONFIG } from './api.config';
 
-const getPokemonResources = async (limit = 10) => {
+const getPokemonResources = async (limit = 10, offset = 0) => {
     try {
-        const query = queryString.stringify({ limit });
+        const query = queryString.stringify({ limit, offset });
 
         const response = await fetch(`${API_CONFIG.BASE_URL}/pokemon/?${query}`);
         const pokemons = await response.json();

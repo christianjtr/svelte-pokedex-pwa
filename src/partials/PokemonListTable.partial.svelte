@@ -4,9 +4,11 @@
   import PokemonTypeFilter from '../components/PokemonTypeFilter.svelte';
   import { pokemonListFetchServiceStore } from '../stores/pokemonListStore';
   import { pokemonListFilterStore } from '../stores/pokemonListFiltersStore';
+  import { getQueryParams } from '../utils/queryString';
 
   const {
     pokemons,
+    nextUrl,
     reset: resetPokemonList,
     fetchPokemons
   } = pokemonListFetchServiceStore;
@@ -14,6 +16,11 @@
   const { filters } = pokemonListFilterStore;
 
   let clearFilterElements;
+
+  const handleOnLoadMore = () => {
+    const queryParams = getQueryParams($nextUrl);
+    fetchPokemons(queryParams.limit, queryParams.offset);
+  };
 
   const generatePokemonList = (filtersToApply, list) => {
     const filtered = list.filter(item => {
@@ -63,7 +70,13 @@
       </div>
       {#if hasPokemons}
         <PokemonList pokemons={pokemonList} on:choose-pokemon />
-        <button class="button my-3 is-flex is-fullwidth is-rounded">
+        <button
+          id="btn-load-more"
+          name="btn-load-more"
+          class="button my-3 is-flex is-fullwidth is-rounded"
+          aria-label="Button load more entries"
+          on:click={handleOnLoadMore}
+        >
           <i class="fa fa-plus-circle mr-1"></i>Load more</button
         >
       {/if}

@@ -12,6 +12,10 @@ class PaginatedGroup {
 
         return groupResources;
     }
+
+    getNextUrl() {
+        return this.paginatedGroup.next;
+    }
 }
 
 class Pokemon {
