@@ -7,23 +7,26 @@ const defaultOpts = {
     onend: () => {}
 };
 
+export const initVoices = () => {
+    speechSynthesis.addEventListener("voiceschanged", () => {
+        const voices = speechSynthesis.getVoices();
+        if(voices.length && voices.length > 0) {
+            window.__SPEECH_SYNTHESIS_VOICES__ = voices;
+        }
+    });
+}
+
 class SpeechSynthesis {
     constructor(speech = '', opts = defaultOpts) {
+        const {volume, rate, pitch, voice, onstart, onend} = opts;
+        const voices = window.__SPEECH_SYNTHESIS_VOICES__;
         
         this.speechToSay = new SpeechSynthesisUtterance(speech);
-        
-        speechSynthesis.addEventListener("voiceschanged", () => {
-            const voices = speechSynthesis.getVoices();
-            if(voices.length && voices.length > 0) {
-                this.speechToSay.voice = voices?.[voice];
-            }
-        });
-
-        const {volume, rate, pitch, voice, onstart, onend} = opts;
         
         this.speechToSay.volume = volume;
         this.speechToSay.rate = rate;
         this.speechToSay.pitch = pitch;
+        this.speechToSay.voice = voices[voice];
         this.speechToSay.onstart = onstart();
         this.speechToSay.onend = onend();
     }

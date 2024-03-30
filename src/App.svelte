@@ -1,9 +1,11 @@
 <script>
+  import { onMount } from 'svelte';
   import PokemonListTable from './partials/PokemonListTable.partial.svelte';
   import PokemonDetail from './partials/PokemonDetail.partial.svelte';
   import SearchForm from './components/SearchForm.svelte';
   import MiniGlassLedLight from './components/MiniGlassLedLight.svelte';
   import { pokemonFetchServiceStore } from './stores/pokemonStore';
+  import { initVoices } from './services/synthesisSpeech/synthesisSpeech';
 
   const {
     pokemon,
@@ -26,6 +28,10 @@
     const { query } = event.detail;
     fetchPokemonByName(query);
   };
+
+  onMount(() => {
+    initVoices();
+  });
 </script>
 
 <main class="is-flex is-justify-content-center">

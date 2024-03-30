@@ -11,6 +11,8 @@
     const formData = new FormData(event.target);
     const query = formData.get('pokemon');
     submitForm({ query });
+
+    event.target.reset();
   };
 </script>
 
