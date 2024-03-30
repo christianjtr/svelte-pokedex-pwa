@@ -31,6 +31,7 @@ class Pokemon {
             weight: this.pokemon.weight,
             height: this.pokemon.height,
             species: this.pokemon.species,
+            gif: this.pokemon.sprites.other.showdown.front_default
         }
 
         return pokemon;
