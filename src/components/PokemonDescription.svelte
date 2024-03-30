@@ -28,6 +28,7 @@
 
     if (rawData) {
       return {
+        baseHappiness: rawData.baseHappiness,
         growthRate: humanizeString(rawData.growthRate),
         habitat: humanizeString(rawData.habitat),
         shape: humanizeString(rawData.shape),
@@ -77,21 +78,27 @@
     <div class="is-flex is-justify-content-space-between">
       <p>
         <span class="is-size-6 has-text-weight-semibold has-text-link"
-          >Habitat:</span
+          >Base happiness</span
         >
-        <span>{data.habitat}</span>
+        <span class="is-block">{data.baseHappiness} pts</span>
       </p>
       <p>
         <span class="is-size-6 has-text-weight-semibold has-text-link"
-          >Shape:</span
+          >Habitat</span
         >
-        <span>{data.shape}</span>
+        <span class="is-block">{data.habitat}</span>
       </p>
       <p>
         <span class="is-size-6 has-text-weight-semibold has-text-link"
-          >Growth rate:</span
+          >Shape</span
         >
-        <span>{data.growthRate}</span>
+        <span class="is-block">{data.shape}</span>
+      </p>
+      <p>
+        <span class="is-size-6 has-text-weight-semibold has-text-link"
+          >Growth rate</span
+        >
+        <span class="is-block">{data.growthRate}</span>
       </p>
     </div>
   {/if}
