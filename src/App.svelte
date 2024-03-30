@@ -2,8 +2,8 @@
   import { onMount } from 'svelte';
   import PokemonListTable from './partials/PokemonListTable.partial.svelte';
   import PokemonDetail from './partials/PokemonDetail.partial.svelte';
-  import SearchForm from './components/SearchForm.svelte';
-  import MiniGlassLedLight from './components/MiniGlassLedLight.svelte';
+  import SearchForm from './components/Forms/SearchForm.svelte';
+  import MiniGlassLedLight from './components/Layout/MiniGlassLedLight.svelte';
   import { pokemonFetchServiceStore } from './stores/pokemonStore';
   import { initVoices } from './services/synthesisSpeech/synthesisSpeech';
 
