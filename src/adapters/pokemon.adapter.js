@@ -68,6 +68,7 @@ class PokemonDescription {
             growthRate: this.description.growth_rate.name,
             habitat: this.description.habitat.name,
             shape: this.description.shape.name,
+            evolutionChainURL: this.description.evolution_chain.url,
             descriptions: this.description.flavor_text_entries
             .filter((description) => description.language.name === language)
             .map(({flavor_text, version}) => ({text: flavor_text, version: version.name}))

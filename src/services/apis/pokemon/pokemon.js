@@ -48,5 +48,5 @@ export {
     getPokemonResources,
     getPokemonByName,
     getTypes,
-    fetchDataGivenURL
+    fetchDataGivenURL,
 }
