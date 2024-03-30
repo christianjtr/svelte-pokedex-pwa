@@ -3,6 +3,7 @@
   import humanizeString from 'humanize-string';
   import Scatterpolar from '../components/Charts/Scatterpolar.svelte';
   import PokemonDescription from '../components/PokemonDescription.svelte';
+  import EvolutionChain from '../components/PokemonEvolution.svelte';
   import { bgColors } from '../utils/pokemonColors';
 
   export let pokemon;
@@ -148,12 +149,19 @@
           </ul>
         </div>
       </div>
-      <Scatterpolar source={stats} markerColor={bgColors[data.types[0]]} />
-      <div
-        class="cell has-background-primary has-background-primary is-col-span-6"
-      >
-        __EVOLUTION_CHAIN_HERE__
+      <div class="is-flex is-align-items-center">
+        <img
+          src={data.gif}
+          alt={`Pokemon ${data.name} gif image`}
+          class="gif-image mr-3"
+        />
+        <p>
+          <span class="is-block title is-size-5 m-0">Stats</span>
+          <span>Important characteristics that defines Pokémon's specie.</span>
+        </p>
       </div>
+      <Scatterpolar source={stats} markerColor={bgColors[data.types[0]]} />
+      <EvolutionChain species={$pokemon.get().species} />
     </div>
   </div>
 </div>
@@ -209,7 +217,15 @@
       background-color: color-mix(in srgb, var(--bg-color) 50%, white);
       border: 0.1875rem solid #dddddd;
     }
-    & img {
+
+    & img.gif-image {
+      width: auto;
+      height: auto;
+      max-width: 20%;
+      max-height: 20%;
+    }
+
+    & img:not(.gif-image) {
       z-index: 1;
       width: 75%;
       height: 75%;
