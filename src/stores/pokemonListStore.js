@@ -39,7 +39,7 @@ function createPokemonListFetchServiceStore() {
             if(data) {
                 const { pokemonCollection, nextUrlSourceLink } = data;
                 hasPokemons.set(pokemonCollection.length > 0);
-                pokemons.set(pokemonCollection);
+                pokemons.update(prevPokemons => [...prevPokemons, ...pokemonCollection]);
                 nextUrl.set(nextUrlSourceLink);
                 return;
             }
