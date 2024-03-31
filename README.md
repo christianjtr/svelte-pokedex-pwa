@@ -4,6 +4,9 @@ Proof of concept aimed at putting into practice Svelte as a technology.
 
 > [!NOTE]  
 > ❤️ Feel free to add any improvements or suggestions you consider.
+> - **Inspiration from:**
+>     - [LocalStorage with TTL Expiration](https://www.sohamkamani.com/javascript/localstorage-with-ttl-expiry/)
+>     - [Pokédex CSS by Bidji](https://codepen.io/Bidji/pen/MYdPwo)
 
 1. [Goals](#001)
 2. [Tech Stack](#002)
@@ -19,10 +22,10 @@ Proof of concept aimed at putting into practice Svelte as a technology.
 -   Integrate the **[The Pokémon API - PokéAPI](https://pokeapi.co/)** to the application.
 - Use of **Plotly charts** to display stats.
 -   Add the capability of listening to the Pokémon description using the **SpeechSynthesis API**.
--   Use browser's **LocalStorage** as a mean of data persistance.
+-   Use browser's **LocalStorage** as a means of data persistence.
 
 #### Features
-- Being able of installing the application on mobile devices / browser devices. **(PWA support)**.
+- Being able to install the application on mobile devices/browser devices. **(PWA support)**.
 - Get paginated resources by setting a **limit and an offset** criteria.
 - Persist data by storing responses in browsers's LocalStorage. **Default time to live (TTL): 5 days.**
 - Look for resources given an identifier (Pokémons given a name).
