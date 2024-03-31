@@ -3,6 +3,8 @@
   --shadow-red-color: #f52e37;
   --max-width: 50ch;
   --border-radius: 1.875rem;
+
+  color-scheme: light only;
 }
 
 html,
