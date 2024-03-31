@@ -261,6 +261,12 @@
     }
   }
 
+  @media screen and (min-width: 375px) and (max-width: 425px) {
+    .pokemon-detail .pokemon-stats-container {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
   @media screen and (min-width: 320px) and (max-width: 375px) {
     .pokemon-detail .pokemon-stats-container {
       grid-template-columns: 1fr !important;
