@@ -3,7 +3,7 @@
 Proof of concept aimed at putting into practice Svelte as a technology.
 
 > [!NOTE]  
-> - ❤️ Feel free to add any improvements or suggestions you consider.
+> ❤️ Feel free to add any improvements or suggestions you consider.
 
 1. [Goals](#001)
 2. [Tech Stack](#002)
@@ -17,8 +17,17 @@ Proof of concept aimed at putting into practice Svelte as a technology.
 
 -   Create an application **(PWA)** that displays Pokémons and its stats.
 -   Integrate the **[The Pokémon API - PokéAPI](https://pokeapi.co/)** to the application.
+- Use of **Plotly charts** to display stats.
 -   Add the capability of listening to the Pokémon description using the **SpeechSynthesis API**.
 -   Use browser's **LocalStorage** as a mean of data persistance.
+
+#### Features
+- Being able of installing the application on mobile devices / browser devices. **(PWA support)**.
+- Get paginated resources by setting a **limit and an offset** criteria.
+- Persist data by storing responses in browsers's LocalStorage. **Default time to live (TTL): 5 days.**
+- Look for resources given an identifier (Pokémons given a name).
+- Display stats using a **scatter polar chart**.
+- Listen to the Pokémon's description by using the **SpeechSynthesis API**.
 
 <a name="002"></a>
 ### Tech Stack
@@ -28,6 +37,9 @@ Proof of concept aimed at putting into practice Svelte as a technology.
     -   [Vite](https://vitejs.dev/)
     -   [SvelteKit Vite PWA](https://vite-pwa-org.netlify.app/)
     -   [Bulma CSS](https://bulma.io/)
+-   **Charts**
+    -   [Plotly JavaScript Open Source Graphing Library
+](https://plotly.com/javascript/)
 -   **Web APIs**
     -   [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
     -   [SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)
@@ -124,7 +136,7 @@ Click on the following link [GitHub page project](https://christianjtr.github.io
 ##### Preview
 
 <p align="center">
-    <img src="https://github.com/christianjtr/svelte-pokedex-pwa/blob/master/samples/demo.mp4" alt="demo"/>
+    <img src="https://github.com/christianjtr/svelte-pokedex-pwa/blob/develop/samples/demo.mp4" alt="demo"/>
 </p>
 
 ##### Home page preview
