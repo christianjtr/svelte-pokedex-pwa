@@ -136,7 +136,9 @@ Click on the following link [GitHub page project](https://christianjtr.github.io
 ##### Preview
 
 
-![](https://github.com/christianjtr/svelte-pokedex-pwa/blob/develop/samples/demo_compressed.mp4)
+<p align="center">
+    <img src="https://github.com/christianjtr/svelte-pokedex-pwa/blob/develop/samples/demo_compressed.gif" alt="gif-demo"/>
+</p>
     
 
 
