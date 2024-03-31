@@ -143,4 +143,16 @@
       padding: 0 1.25rem;
     }
   }
+
+  @media screen and (min-width: 320px) and (max-width: 375px) {
+    .pokemon-characteristics {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .pokemon-characteristics {
+      grid-template-columns: 1fr !important;
+    }
+  }
 </style>
