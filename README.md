@@ -152,3 +152,9 @@ Click on the following link [GitHub page project](https://christianjtr.github.io
 ##### Detail page preview
 
 ![](./samples/pokedex_detail.png)
+
+<a name="006"></a>
+### Next steps
+
+-   Improve responsiveness (Lighthouse performance review).
+-   Better implement Svelte-way of develop applications.
