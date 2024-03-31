@@ -1,12 +1,12 @@
 {
   "short_name": "svelte-pokedex-pwa",
   "name": "svelte-pokedex-pwa",
-  "start_url": "/",
+  "start_url": "/svelte-pokedex-pwa",
   "background_color": "#f52e37",
   "theme_color": "#f52e37",
   "display": "fullscreen",
   "scope": "/",
-  "description": "Lofi to lofi beats, while using the scratchpad to list down tasks and thoughts",
+  "description": "Pokédex application built using Svelte",
   "icons": [
     {
       "src": "/icons/favicon.ico",
