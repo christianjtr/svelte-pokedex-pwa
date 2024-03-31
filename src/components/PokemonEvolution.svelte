@@ -105,6 +105,12 @@
     }
   }
 
+  @media screen and (min-width: 375px) and (max-width: 425px) {
+    .pokemon-evolution-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
   @media screen and (min-width: 320px) and (max-width: 375px) {
     .pokemon-evolution-container {
       grid-template-columns: 1fr;
