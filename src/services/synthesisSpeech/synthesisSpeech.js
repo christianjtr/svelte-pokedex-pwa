@@ -1,32 +1,30 @@
 const defaultOpts = { 
     volume: 1, 
     rate: 0.95, 
-    pitch: 0.5,
-    voice: 51, // Google US English...
+    pitch: 0.6,
     onstart: () => {},
     onend: () => {}
 };
 
-export const initVoices = () => {
+export const initVoices = (language = "en-US") => {
     speechSynthesis.addEventListener("voiceschanged", () => {
         const voices = speechSynthesis.getVoices();
         if(voices.length && voices.length > 0) {
             window.__SPEECH_SYNTHESIS_VOICES__ = voices;
+            window.__SELECTED_VOICE__ = voices.filter(({ lang }) => lang === language)[0]
         }
     });
 }
 
 class SpeechSynthesis {
     constructor(speech = '', opts = defaultOpts) {
-        const {volume, rate, pitch, voice, onstart, onend} = opts;
-        const voices = window.__SPEECH_SYNTHESIS_VOICES__;
-        
+        const {volume, rate, pitch, onstart, onend} = opts;
         this.speechToSay = new SpeechSynthesisUtterance(speech);
         
         this.speechToSay.volume = volume;
         this.speechToSay.rate = rate;
         this.speechToSay.pitch = pitch;
-        this.speechToSay.voice = voices[voice];
+        this.speechToSay.voice = window.__SELECTED_VOICE__;
         this.speechToSay.onstart = onstart();
         this.speechToSay.onend = onend();
     }
