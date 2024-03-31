@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from 'svelte';
   import PokemonList from '../components/PokemonList.svelte';
   import PokemonTypeFilter from '../components/PokemonTypeFilter.svelte';
+  import Loading from '../components/Layout/Layout.svelte';
   import { pokemonListFetchServiceStore } from '../stores/pokemonListStore';
   import { pokemonListFilterStore } from '../stores/pokemonListFiltersStore';
   import { getQueryParams } from '../utils/queryString';
@@ -9,6 +10,7 @@
   const {
     pokemons,
     nextUrl,
+    isLoading,
     reset: resetPokemonList,
     fetchPokemons
   } = pokemonListFetchServiceStore;
@@ -55,7 +57,7 @@
     </div>
     <div class="column is-10">
       <div
-        class="is-flex is-justify-content-space-between is-align-items-baseline mb-1"
+        class="is-flex is-justify-content-space-between is-align-items-baseline mb-1 filter-container"
       >
         <h1 class="title is-size-5">Pokémons</h1>
         <button
@@ -68,6 +70,9 @@
           Clear filters
         </button>
       </div>
+      {#if $isLoading}
+        <Loading />
+      {/if}
       {#if hasPokemons}
         <PokemonList pokemons={pokemonList} on:choose-pokemon />
         <button
@@ -83,3 +88,31 @@
     </div>
   </div>
 </div>
+
+<style>
+  @media screen and (min-width: 320px) and (max-width: 375px) {
+    .filter-container {
+      display: flex !important;
+      flex-direction: column;
+      margin-bottom: 20px !important;
+    }
+
+    .filter-container *:not(i) {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .filter-container {
+      display: flex !important;
+      flex-direction: column;
+      margin-bottom: 20px !important;
+    }
+
+    .filter-container *:not(i) {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

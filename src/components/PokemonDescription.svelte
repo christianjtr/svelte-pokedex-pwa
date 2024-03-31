@@ -1,6 +1,7 @@
 <script>
   import { onDestroy, onMount } from 'svelte';
   import humanizeString from 'humanize-string';
+  import Loading from '../components/Layout/Layout.svelte';
   import { pokemonDescriptionStore } from '../stores/pokemonDescriptionStore';
   import SpeechSynthesis from '../services/synthesisSpeech/synthesisSpeech';
 
@@ -13,6 +14,7 @@
 
   const {
     description,
+    isLoading,
     reset: resetDescription,
     fetchPokemonDescription
   } = pokemonDescriptionStore;
@@ -59,7 +61,9 @@
 </script>
 
 <div class="mb-5 pokemon-description">
-  {#if data}
+  {#if $isLoading}
+    <Loading />
+  {:else if data}
     <p class="mb-4 is-size-4">
       {#if isSpeechSynthesisAvailable}
         <button

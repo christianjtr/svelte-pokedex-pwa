@@ -23,4 +23,18 @@
       transition: filter 0.5s;
     }
   }
+
+  @media screen and (min-width: 320px) and (max-width: 375px) {
+    .pokemon-list > div.grid {
+      display: flex !important;
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .pokemon-list > div.grid {
+      display: flex !important;
+      flex-direction: column;
+    }
+  }
 </style>

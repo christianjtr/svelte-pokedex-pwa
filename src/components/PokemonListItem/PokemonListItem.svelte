@@ -64,3 +64,37 @@
     </article>
   </div>
 </div>
+
+<style>
+  @media screen and (min-width: 320px) and (max-width: 375px) {
+    article {
+      display: flex !important;
+      flex-direction: column;
+    }
+
+    article img {
+      margin: 0;
+    }
+
+    .title-container {
+      position: inherit;
+      margin: 10px !important;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    article {
+      display: flex !important;
+      flex-direction: column;
+    }
+
+    article img {
+      margin: 0;
+    }
+
+    .title-container {
+      position: inherit;
+      margin: 10px !important;
+    }
+  }
+</style>

@@ -70,13 +70,13 @@
         <div class="glass-button">
           <div class="glass-button__reflect"></div>
         </div>
-        <div>
+        <div class="is-flex">
           {#each ledLights as ledLight}
             <MiniGlassLedLight theme={ledLight} />
           {/each}
         </div>
       </div>
-      <div class="mx-6">
+      <div class="mx-6 search-form-container">
         <SearchForm on:submit-form={handleOnSubmitSearchForm} />
       </div>
     </div>
